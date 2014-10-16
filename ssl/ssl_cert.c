@@ -264,6 +264,17 @@ CERT *ssl_cert_dup(CERT *cert)
     }
     ret->ecdh_tmp_cb = cert->ecdh_tmp_cb;
 #endif
+#ifndef OPENSSL_NO_RLWEKEX
+	if (cert->rlwe_tmp)
+		{
+		ret->rlwe_tmp = RLWE_PAIR_dup(cert->rlwe_tmp);
+		if (ret->rlwe_tmp == NULL)
+			{
+			SSLerr(SSL_F_SSL_CERT_DUP, ERR_R_RLWE_LIB);
+			goto err;
+			}
+		}
+#endif
 
     for (i = 0; i < SSL_PKEY_NUM; i++) {
         if (cert->pkeys[i].x509 != NULL) {
@@ -291,7 +302,7 @@ CERT *ssl_cert_dup(CERT *cert)
 
     return (ret);
 
-#if !defined(OPENSSL_NO_DH) || !defined(OPENSSL_NO_ECDH)
+#if !defined(OPENSSL_NO_DH) || !defined(OPENSSL_NO_ECDH) || !defined(OPENSSL_NO_RLWEKEX)
  err:
 #endif
 #ifndef OPENSSL_NO_RSA
@@ -305,6 +316,10 @@ CERT *ssl_cert_dup(CERT *cert)
 #ifndef OPENSSL_NO_ECDH
     if (ret->ecdh_tmp != NULL)
         EC_KEY_free(ret->ecdh_tmp);
+#endif
+#ifndef OPENSSL_NO_RLWEKEX
+	if (ret->rlwe_tmp != NULL)
+		RLWE_PAIR_free(ret->rlwe_tmp);
 #endif
 
     for (i = 0; i < SSL_PKEY_NUM; i++) {
@@ -348,6 +363,9 @@ void ssl_cert_free(CERT *c)
 #ifndef OPENSSL_NO_ECDH
     if (c->ecdh_tmp)
         EC_KEY_free(c->ecdh_tmp);
+#endif
+#ifndef OPENSSL_NO_RLWEKEX
+	if (c->rlwe_tmp) RLWE_PAIR_free(c->rlwe_tmp);
 #endif
 
     for (i = 0; i < SSL_PKEY_NUM; i++) {
@@ -451,6 +469,12 @@ void ssl_sess_cert_free(SESS_CERT *sc)
 #ifndef OPENSSL_NO_ECDH
     if (sc->peer_ecdh_tmp != NULL)
         EC_KEY_free(sc->peer_ecdh_tmp);
+#endif
+#ifndef OPENSSL_NO_RLWEKEX
+	if (sc->peer_rlwepub_tmp != NULL)
+		RLWE_PUB_free(sc->peer_rlwepub_tmp);
+	if (sc->peer_rlwerec_tmp != NULL)
+		RLWE_REC_free(sc->peer_rlwerec_tmp);
 #endif
 
     OPENSSL_free(sc);

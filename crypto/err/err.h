@@ -179,24 +179,25 @@ typedef struct err_state_st {
 /* #define ERR_LIB_SSL3         23 */
 /* #define ERR_LIB_RSAREF       30 */
 /* #define ERR_LIB_PROXY        31 */
-# define ERR_LIB_BIO             32
-# define ERR_LIB_PKCS7           33
-# define ERR_LIB_X509V3          34
-# define ERR_LIB_PKCS12          35
-# define ERR_LIB_RAND            36
-# define ERR_LIB_DSO             37
-# define ERR_LIB_ENGINE          38
-# define ERR_LIB_OCSP            39
-# define ERR_LIB_UI              40
-# define ERR_LIB_COMP            41
-# define ERR_LIB_ECDSA           42
-# define ERR_LIB_ECDH            43
-# define ERR_LIB_STORE           44
-# define ERR_LIB_FIPS            45
-# define ERR_LIB_CMS             46
-# define ERR_LIB_TS              47
-# define ERR_LIB_HMAC            48
-# define ERR_LIB_JPAKE           49
+#define ERR_LIB_BIO		32
+#define ERR_LIB_PKCS7		33
+#define ERR_LIB_X509V3		34
+#define ERR_LIB_PKCS12		35
+#define ERR_LIB_RAND		36
+#define ERR_LIB_DSO		37
+#define ERR_LIB_ENGINE		38
+#define ERR_LIB_OCSP            39
+#define ERR_LIB_UI              40
+#define ERR_LIB_COMP            41
+#define ERR_LIB_ECDSA		42
+#define ERR_LIB_ECDH		43
+#define ERR_LIB_STORE           44
+#define ERR_LIB_FIPS		45
+#define ERR_LIB_CMS		46
+#define ERR_LIB_TS		47
+#define ERR_LIB_HMAC		48
+#define ERR_LIB_JPAKE		49
+#define ERR_LIB_RLWEKEX     50
 
 # define ERR_LIB_USER            128
 
@@ -227,6 +228,7 @@ typedef struct err_state_st {
 # define COMPerr(f,r) ERR_PUT_error(ERR_LIB_COMP,(f),(r),__FILE__,__LINE__)
 # define ECDSAerr(f,r)  ERR_PUT_error(ERR_LIB_ECDSA,(f),(r),__FILE__,__LINE__)
 # define ECDHerr(f,r)  ERR_PUT_error(ERR_LIB_ECDH,(f),(r),__FILE__,__LINE__)
+# define RLWEKEXerr(f,r)  ERR_PUT_error(ERR_LIB_RLWEKEX,(f),(r),__FILE__,__LINE__)
 # define STOREerr(f,r) ERR_PUT_error(ERR_LIB_STORE,(f),(r),__FILE__,__LINE__)
 # define FIPSerr(f,r) ERR_PUT_error(ERR_LIB_FIPS,(f),(r),__FILE__,__LINE__)
 # define CMSerr(f,r) ERR_PUT_error(ERR_LIB_CMS,(f),(r),__FILE__,__LINE__)
@@ -289,6 +291,7 @@ typedef struct err_state_st {
 # define ERR_R_ECDH_LIB  ERR_LIB_ECDH/* 43 */
 # define ERR_R_STORE_LIB ERR_LIB_STORE/* 44 */
 # define ERR_R_TS_LIB    ERR_LIB_TS/* 45 */
+# define ERR_R_RLWE_LIB  ERR_LIB_RLWEKEX/* 50 */
 
 # define ERR_R_NESTED_ASN1_ERROR                 58
 # define ERR_R_BAD_ASN1_OBJECT_HEADER            59

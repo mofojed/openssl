@@ -393,6 +393,7 @@ static ERR_STRING_DATA SSL_str_reasons[] = {
     {ERR_REASON(SSL_R_BAD_PSK_IDENTITY_HINT_LENGTH),
      "bad psk identity hint length"},
     {ERR_REASON(SSL_R_BAD_RESPONSE_ARGUMENT), "bad response argument"},
+    {ERR_REASON(SSL_R_BAD_RLWE_PUB), "bad rlwe pub"},
     {ERR_REASON(SSL_R_BAD_RSA_DECRYPT), "bad rsa decrypt"},
     {ERR_REASON(SSL_R_BAD_RSA_ENCRYPT), "bad rsa encrypt"},
     {ERR_REASON(SSL_R_BAD_RSA_E_LENGTH), "bad rsa e length"},

@@ -253,6 +253,7 @@ extern "C" {
 # define SSL_TXT_kECDH           "kECDH"
 # define SSL_TXT_kEECDH          "kEECDH"
 # define SSL_TXT_kECDHE          "kECDHE"/* alias for kEECDH */
+# define SSL_TXT_kRLWE		     "kRLWE"
 # define SSL_TXT_kPSK            "kPSK"
 # define SSL_TXT_kGOST           "kGOST"
 # define SSL_TXT_kSRP            "kSRP"
@@ -280,6 +281,7 @@ extern "C" {
 # define SSL_TXT_ECDHE           "ECDHE"/* alias for ECDHE" */
 # define SSL_TXT_AECDH           "AECDH"
 # define SSL_TXT_ECDSA           "ECDSA"
+# define SSL_TXT_RLWE		     "RLWE" /* same as "kRLWE" */
 # define SSL_TXT_KRB5            "KRB5"
 # define SSL_TXT_PSK             "PSK"
 # define SSL_TXT_SRP             "SRP"
@@ -2859,6 +2861,7 @@ void ERR_load_SSL_strings(void);
 # define SSL_R_BAD_PROTOCOL_VERSION_NUMBER                116
 # define SSL_R_BAD_PSK_IDENTITY_HINT_LENGTH               316
 # define SSL_R_BAD_RESPONSE_ARGUMENT                      117
+# define SSL_R_BAD_RLWE_PUB				                  396
 # define SSL_R_BAD_RSA_DECRYPT                            118
 # define SSL_R_BAD_RSA_ENCRYPT                            119
 # define SSL_R_BAD_RSA_E_LENGTH                           120

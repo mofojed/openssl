@@ -1894,7 +1894,7 @@ int ssl3_send_server_key_exchange(SSL *s)
                 rlwe = RLWE_PAIR_dup(rlwep);
             }
 
-            if (rlwep == NULL) {
+            if (rlwe == NULL) {
                 SSLerr(SSL_F_SSL3_SEND_SERVER_KEY_EXCHANGE,ERR_R_RLWE_LIB);
                 goto err;
             }
